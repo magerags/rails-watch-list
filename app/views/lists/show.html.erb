@@ -1,12 +1,11 @@
 <div class="container my-5">
   <h1 class="my-5">
     <%= @list.name %>
-    <%= link_to list_path(@list), method: :delete, data: { confirm: 'Are you sure?'} do %>
-      <i class="fas fa-trash"></i>
-    <% end %>
   </h1>
   <h2>Movies</h2>
+  <div class="cards">
   <% @list.movies.each do |movie| %>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url()">
     <p>
       <%= movie.title %>
       <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
@@ -14,7 +13,9 @@
         <i class="fas fa-trash"></i>
       <% end %>
     </p>
+  </div>
   <% end %>
+  </div>
   <div class="form my-5">
   <h2>Add a movie!</h2>
   <%= simple_form_for [@list, @bookmark] do |f| %>
@@ -27,7 +28,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit %>
+      <%= f.button :submit, class: "btn btn-primary" %>
     </div>
   <% end %>
   </div>
